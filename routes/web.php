@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -22,6 +23,7 @@ Route::get('/register', function () {
     return view('register');
 });
 
+Route::post('register' , [RegisterController::class, 'register']);
 
 Route::prefix('user/')->group(function (){
  Route::get('list' , [UserController::class, 'index']);
@@ -30,6 +32,5 @@ Route::prefix('user/')->group(function (){
  Route::get('edit/{id}' , [UserController::class, 'edit']);
  Route::post('update' , [UserController::class, 'update']);
  Route::get('delete/{id}' , [UserController::class, 'delete']);
- // Route::get('search' , [UserController::class, 'search']);
  Route::get('show/{id}' , [UserController::class, 'show']);
 });

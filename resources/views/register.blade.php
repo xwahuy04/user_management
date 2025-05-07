@@ -50,25 +50,43 @@
                                         <h4 class="mt-1 mb-5 pb-1">We are The Lotus Team</h4>
                                     </div>
 
-                                    <form>
+                                    <form action="{{ url('register') }}" method="POST" enctype="multipart/form-data"> 
+                                        @csrf
                                         <p>Please Create your account</p>
 
                                         <div data-mdb-input-init class="form-outline mb-4">
                                             <label class="form-label" for="form2Example11">First Name</label>
                                             <input type="text" name="first_name" class="form-control"
-                                                placeholder="Enter First Name" />
+                                                placeholder="Enter First Name"  value="{{ old('first_name') }}"/>
+                                            @error('first_name')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
 
                                         <div data-mdb-input-init class="form-outline mb-4">
                                             <label class="form-label" for="form2Example11">Last Name</label>
                                             <input type="text" name="last_name" class="form-control"
-                                                placeholder="Enter Last Name" />
+                                                placeholder="Enter Last Name" value="{{ old('last_name') }}" />
+                                            @error('last_name')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
 
                                         <div data-mdb-input-init class="form-outline mb-4">
                                             <label class="form-label" for="form2Example11">Email</label>
                                             <input type="email" name="email" class="form-control"
-                                                placeholder="Enter Your Email" />
+                                            placeholder="Enter Your Email" value="{{ old('email') }}" />
+                                            @error('email')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+
+                                        <div data-mdb-input-init class="form-outline mb-4">
+                                            <label class="form-label" for="form2Example22">Password</label>
+                                            <input type="password" name="password" class="form-control" />
+                                            @error('password')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
 
                                         <div data-mdb-input-init class="form-outline mb-4">
@@ -79,19 +97,38 @@
 
                                         <div data-mdb-input-init class="form-outline mb-4">
                                             <label class="form-label" for="form2Example11">Hobby</label>
-                                            <input type="checkbox" name="gender" value="reading"/> Reading
-                                            <input type="checkbox" name="gender" value="female"/> Female
+                                            <input type="checkbox" name="hobby[]" value="reading"/> Reading
+                                            <input type="checkbox" name="hobby[]" value="reading"/> Reading
+                                            <input type="checkbox" name="hobby[]" value="travelling"/> Travelling
                                         </div>
 
                                         <div data-mdb-input-init class="form-outline mb-4">
-                                            <label class="form-label" for="form2Example22">Password</label>
-                                            <input type="password" name="password" class="form-control" />
+                                            <label class="form-label" for="form2Example22">Phone</label>
+                                            <input type="number" name="phone" class="form-control" />
+                                            @error('phone')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+
+                                        <div data-mdb-input-init class="form-outline mb-4">
+                                            <label class="form-label" for="form2Example22">City</label>
+                                            <select name="city_id" id="" class="form-control">
+                                                <option value="1">Surabaya</option>
+                                                <option value="2">Lumajang</option>
+                                                <option value="3">Jember</option>
+                                                <option value="4">Malang</option>
+                                            </select>
+                                        </div>
+
+                                        <div data-mdb-input-init class="form-outline mb-4">
+                                            <label class="form-label" for="form2Example22">Image</label>
+                                            <input type="file" name="image" class="form-control" />
                                         </div>
 
                                         <div class="text-center pt-1 mb-5 pb-1">
                                             <button data-mdb-button-init data-mdb-ripple-init
                                                 class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
-                                                type="button">Register</button>
+                                                type="submit">Register</button>
                                         </div>
 
                                         <div class="d-flex align-items-center justify-content-center pb-4">
