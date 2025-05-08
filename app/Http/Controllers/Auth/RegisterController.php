@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
@@ -22,8 +23,9 @@ class RegisterController extends Controller
         if ($request->file('image')) {
             $image = $request->file('image');
             $img_name = rand(100000 , 999999). time() . '.' . $image->getClientOriginalExtension();
-            $image->move('images', $img_name);
-            $img_name = 'images/' . $img_name;
+            $image->move(public_path('images'), $img_name);
+            // $image->move('images/', $img_name);
+            // $img_name = 'images' . $img_name;
         }
 
         $user = new User();
@@ -31,9 +33,11 @@ class RegisterController extends Controller
         $user->last_name = $request->last_name;
         $user->email = $request->email;
         $user->phone = $request->phone;
+        $user->password = Hash::make($request->password);
         $user->gender = $request->gender;
         $user->hobby =  ($request->hobby) ? implode(',', $request->hobby) : null;
         $user->image = isset($img_name) ? $img_name : null;
+        $user->city_id = $request->city_id;
         $user->save();
 
         return redirect('/')->with('success', 'User registered successfully');

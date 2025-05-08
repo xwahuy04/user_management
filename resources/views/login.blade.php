@@ -51,31 +51,36 @@
                                         <h4 class="mt-1 mb-5 pb-1">We are The Lotus Team</h4>
                                     </div>
 
-                                    <form>
+                                    <form action="{{ url('login') }}" method="POST">
+                                        @csrf
                                         <p>Please login to your account</p>
 
                                         <div data-mdb-input-init class="form-outline mb-4">
-                                            <label class="form-label" for="form2Example11">Username</label>
-                                            <input type="email" id="form2Example11" class="form-control"
-                                                placeholder="Phone number or email address" />
+                                            <label class="form-label" for="form2Example11">Email</label>
+                                            <input type="email" name="email" class="form-control"
+                                                placeholder="Enter your email address" />
+                                             @error('email')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                             @enderror
                                         </div>
 
                                         <div data-mdb-input-init class="form-outline mb-4">
                                             <label class="form-label" for="form2Example22">Password</label>
-                                            <input type="password" id="form2Example22" class="form-control" />
+                                            <input type="password" name="password" class="form-control" placeholder="Enter your password" />
+                                            @error('password')
+                                             <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
 
                                         <div class="text-center pt-1 mb-5 pb-1">
-                                            <button data-mdb-button-init data-mdb-ripple-init
-                                                class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
-                                                type="button">Login</button>
-                                            <a class="text-muted" href="#!">Forgot password?</a>
+                                            <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
+                                                type="submit">Login</button>
                                         </div>
 
                                         <div class="d-flex align-items-center justify-content-center pb-4">
                                             <p class="mb-0 me-2">Don't have an account?</p>
                                             <a href="{{ url('register') }}" class="btn btn-outline-danger">Create new</a>
-                                        </div>
+                                        </div> 
 
                                     </form>
 

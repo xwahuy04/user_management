@@ -83,7 +83,7 @@
 
                                         <div data-mdb-input-init class="form-outline mb-4">
                                             <label class="form-label" for="form2Example22">Password</label>
-                                            <input type="password" name="password" class="form-control" />
+                                            <input type="password" name="password" class="form-control" placeholder="Enter your password" />
                                             @error('password')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
@@ -104,7 +104,7 @@
 
                                         <div data-mdb-input-init class="form-outline mb-4">
                                             <label class="form-label" for="form2Example22">Phone</label>
-                                            <input type="number" name="phone" class="form-control" />
+                                            <input type="number" name="phone" value="{{ old('phone') }}" class="form-control" placeholder="Enter  your phone"/>
                                             @error('phone')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
